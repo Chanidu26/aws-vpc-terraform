@@ -1,7 +1,7 @@
 name: Terraform Deploy Resources
 
 on:
-  #push:
+  push:
     branches:
       - main
 
