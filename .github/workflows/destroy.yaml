@@ -3,7 +3,7 @@ name: Terraform Destroy Resources
 on:
   push:
     branches:
-      - destroy
+      - main
 
 jobs:
   terraform:
