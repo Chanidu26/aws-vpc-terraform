@@ -1,7 +1,7 @@
 name: Terraform Destroy Resources
 
 on:
-  push:
+  #push:
     branches:
       - main
 
