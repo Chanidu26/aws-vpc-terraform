@@ -28,8 +28,8 @@ jobs:
         run: terraform init
         working-directory: terraform
 
-      - name: Terraform Format
-        run: terraform fmt -check
+      - name: Terraform Validate
+        run: terraform validate
         working-directory: terraform
 
       - name: Terraform Plan
