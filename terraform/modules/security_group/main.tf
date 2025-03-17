@@ -1,4 +1,4 @@
-resource "aws_security_group" "sg" {
+resource "aws_security_group" "ec2_sg" {
 
     description = "Allow SSH and HTTP inbound traffic"
     vpc_id      =  var.vpc_id
@@ -27,6 +27,31 @@ resource "aws_security_group" "sg" {
     }
 
     tags = {
-        Name = "vpc_security_group_rules"
+        Name = "EC2_SG"
+    }
+}
+
+
+
+resource "aws_security_group" "alb_sg" {
+
+    vpc_id = var.my_vpc.id
+
+    ingress {
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"] 
+    }
+
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+        Name = "ALB_SG"
     }
 }
