@@ -35,7 +35,7 @@ resource "aws_security_group" "ec2_sg" {
 
 resource "aws_security_group" "alb_sg" {
 
-    vpc_id = var.my_vpc.id
+    vpc_id = var.vpc_id
 
     ingress {
         from_port   = 80
