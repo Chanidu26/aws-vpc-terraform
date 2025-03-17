@@ -3,6 +3,6 @@ variable "public_subnet_id" {
     description = "value of public subnet id"
 }
 variable "security_group_id" {
-    type = list(string)
+    type = string
     description = "value of security group id"
 }
