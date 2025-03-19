@@ -14,21 +14,23 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.my_vpc.id
   cidr_block              = "10.0.1.0/24"
+  availability_zone       = "us-east-1a"
 
   tags = {
-    Name = "PublicSubnet"
+    Name = "PublicSubnet-1"
   }
 }
 
-resource "aws_subnet" "private_subnet" {
+resource "aws_subnet" "public_subnet_2" {
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "10.0.2.0/24"
+  availability_zone = "us-east-1b"
 
   tags = {
-    Name = "PrivateSubnet"
+    Name = "PublicSubnet-2"
   }
 }
 
@@ -44,7 +46,12 @@ resource "aws_route_table" "public_rt" {
   }
 }
 
-resource "aws_route_table_association" "public_association" {
-  subnet_id      = aws_subnet.public_subnet.id
+resource "aws_route_table_association" "public_association_1" {
+  subnet_id      = aws_subnet.public_subnet_1.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_association_2" {
+  subnet_id      = aws_subnet.public_subnet_2.id
   route_table_id = aws_route_table.public_rt.id
 }

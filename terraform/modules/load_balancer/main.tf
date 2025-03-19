@@ -1,9 +1,9 @@
 resource "aws_lb" "my_alb" {
   name               = "my-load-balancer"
   internal           = false
-  load_balancer_type = "network"
+  load_balancer_type = "application"
   security_groups    = [var.alb_security_group_id]
-  subnets            = [var.public_subnet_id]
+  subnets            = [var.public_subnet_1_id, var.public_instance_2_id]
 
   tags = {
     Name = "MyALB"
@@ -11,6 +11,7 @@ resource "aws_lb" "my_alb" {
 }
 
 resource "aws_lb_target_group" "tg" {
+    
   name     = "my-target-group"
   port     = 80
   protocol = "HTTP"

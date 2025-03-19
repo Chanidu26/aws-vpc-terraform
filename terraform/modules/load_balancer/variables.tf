@@ -1,6 +1,11 @@
-variable "public_subnet_id" {
+variable "public_subnet_1_id" {
     type = string
-    description = "value of public subnet id"
+    description = "value of public subnet 1 id"
+}
+
+variable "public_subnet_2_id" {
+    type = string
+    description = "value of public subnet 2 id"
 }
 
 variable "alb_security_group_id" {
