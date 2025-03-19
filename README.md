@@ -53,7 +53,7 @@ The setup consists of:
 
 ---
 
-## 🛠️ Terraform Configuration
+## 🛠️ Terraform Configuration and Deployment
 
 ### **1️⃣ Backend Configuration (State Management)**
 To securely manage Terraform state, we use **S3** with **DynamoDB** for state locking.
@@ -69,19 +69,20 @@ terraform {
   }
 }
 
-## 🔧 Deployment Steps
-
-```hcl
-# Clone the repository
+# 1️⃣ Clone the repository
 git clone https://github.com/Chanidu26/aws-vpc-terraform
 cd terraform
 
-# Initialize Terraform
+# 2️⃣ Initialize Terraform
 terraform init
 
-# Plan the deployment
+# 3️⃣ Validate the configuration
+terraform validate
+
+# 4️⃣ Plan the deployment
 terraform plan
 
-# Apply the changes
+# 5️⃣ Apply the changes
 terraform apply -auto-approve
+
 
