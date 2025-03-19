@@ -68,3 +68,20 @@ terraform {
     encrypt        = true
   }
 }
+
+## 🔧 Deployment Steps
+
+```hcl
+# Clone the repository
+git clone https://github.com/Chanidu26/aws-vpc-terraform
+cd terraform
+
+# Initialize Terraform
+terraform init
+
+# Plan the deployment
+terraform plan
+
+# Apply the changes
+terraform apply -auto-approve
+
