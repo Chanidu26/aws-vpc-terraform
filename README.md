@@ -1,68 +1,64 @@
-# AWS Application Load Balancer (ALB) with EC2 Instances
+# 🌐 AWS VPC Automation using Terraform
 
 ## 📌 Project Overview
-This project deploys an **AWS Application Load Balancer (ALB)** to distribute incoming traffic between two **EC2 instances** deployed across different **Availability Zones**. The infrastructure is provisioned using **Terraform**.
+This project deploys an **AWS Application Load Balancer (ALB)** to distribute incoming traffic between two **EC2 instances** across different **Availability Zones**. The infrastructure is provisioned using **Terraform** for automation and scalability.
+
+---
 
 ## 🏗️ Architecture
-The setup includes:
-- **VPC** with two **public subnets** in different Availability Zones.
-- **Internet Gateway** for external access.
-- **Route Tables** configured for public subnets.
-- **Security Groups** to control inbound/outbound traffic.
-- **Application Load Balancer (ALB)** for traffic distribution.
-- **Target Group** to register EC2 instances.
-- **EC2 Instances** running in separate Availability Zones.
+The setup consists of:
 
-### 📌 Architecture Diagram
+🔹 **VPC** with two **public subnets** in different **Availability Zones**  
+🔹 **Internet Gateway** for external access  
+🔹 **Route Tables** for directing traffic  
+🔹 **Security Groups** to control network access  
+🔹 **Application Load Balancer (ALB)** for traffic distribution  
+🔹 **Target Group** to register EC2 instances  
+🔹 **EC2 Instances** running across multiple zones  
+
+### 📌 Architecture Diagram  
 ![Design Architecture](https://raw.githubusercontent.com/Chanidu26/aws-vpc-terraform/refs/heads/main/figures/Design.jpg)
 
+---
+
 ## 🚀 Infrastructure Components
+
 ### **1️⃣ Virtual Private Cloud (VPC)**
-- A VPC is created to isolate network resources.
-- Includes two public subnets.
+✅ Creates an isolated network environment  
+✅ Includes two **public subnets**  
 
 ### **2️⃣ Subnets**
-- **Public Subnet 1** in Availability Zone 1.
-- **Public Subnet 2** in Availability Zone 2.
+✅ **Public Subnet 1** in **Availability Zone 1**  
+✅ **Public Subnet 2** in **Availability Zone 2**  
 
 ### **3️⃣ Internet Gateway & Route Tables**
-- Internet Gateway is attached to allow public access.
-- Route tables direct traffic from the subnets to the internet.
+✅ **Internet Gateway** attached to allow public access  
+✅ **Route tables** configured to direct traffic to the internet  
 
 ### **4️⃣ Security Groups**
-- ALB Security Group: Allows inbound HTTP traffic.
-- EC2 Security Group: Allows HTTP traffic from ALB only.
+✅ **ALB Security Group** - Allows inbound **HTTP (Port 80)** traffic  
+✅ **EC2 Security Group** - Allows **only ALB-originated HTTP traffic**  
 
 ### **5️⃣ Application Load Balancer (ALB)**
-- Listens on port `80` and forwards requests to EC2 instances.
-- Associated with a **Target Group** for EC2 instances.
+✅ Listens on **port 80** and forwards requests to **EC2 instances**  
+✅ Associated with a **Target Group** for load distribution  
 
 ### **6️⃣ Target Group**
-- Contains the two EC2 instances.
-- Health checks are configured to verify instance availability.
+✅ Registers the two **EC2 instances**  
+✅ **Health checks** configured to ensure instance availability  
 
 ### **7️⃣ EC2 Instances**
-- Two EC2 instances are launched.
-- Instances are registered with the Target Group.
+✅ Two EC2 instances deployed in different zones  
+✅ Registered with the **Target Group** for load balancing  
+
+---
 
 ## 🛠️ Terraform Configuration
+
 ### **1️⃣ Backend Configuration (State Management)**
-To store Terraform state securely, use **S3** with **DynamoDB** for state locking.
+To securely manage Terraform state, we use **S3** with **DynamoDB** for state locking.
 
-# Clone the repository
-git clone https://github.com/Chanidu26/aws-vpc-terraform
-cd terraform
-
-# Initialize Terraform
-terraform init
-
-# Plan the deployment
-terraform plan
-
-# Apply the changes
-terraform apply -auto-approve
-
-# Terraform Backend Configuration
+```hcl
 terraform {
   backend "s3" {
     bucket         = "your-terraform-state-bucket"
